@@ -39,11 +39,6 @@ nircmd.exe monitor off
 goto main
 )
 
-if /I "%input%" EQU "clear" (
-cls
-goto main
-)
-
 if /I "%input%" EQU "website" (
 goto web
 )
@@ -94,12 +89,6 @@ if /I "%input%" EQU "shell" (
 cd %userprofile%
 call cmd.exe
 echo.
-cd C:\Users\alex\Desktop\vindicta client
-goto main
-)
-
-if /I "%input%" EQU "clear" (
-cls
 goto main
 )
 
@@ -111,6 +100,7 @@ goto main
 )
 
 if /I "%input%" EQU "ps" (
+cd %userprofile%
 call powershell
 goto main
 )
