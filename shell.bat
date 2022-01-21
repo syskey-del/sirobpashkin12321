@@ -48,7 +48,7 @@ netsh wlan disconnect
 goto main
 )
 
-if /I "%input%" EQU "ddos" (
+if /I "%input%" EQU "adapter" (
 FOR /F "tokens=3 delims= " %%f in ('netsh wlan show interface ^| find " Name"') do set netname=%%f
 ping localhost -n 2 >nul
 netsh interface set interface name="%netname%" admin=DISABLED
