@@ -6,6 +6,7 @@ For /f %%b in (
 ) Do Set ExtIP=%%b
 echo.
 :main
+ping localhost -n 2 >nul
 set /p input="vindicta > "
 
 if /I "%input%" EQU "help" (
